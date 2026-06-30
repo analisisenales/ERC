@@ -1,0 +1,2 @@
+# ERC
+El presente repositorio contiene el softwareque es desarrollado para el estudio en la identificación de biomarcadores alternativos para tener una detección de la Enfermedad Renal Crónica (ERC), mediante el procesamiento de un conjunto de datos depurados y la aplicación de los algoritmos K-Nearest Neighbors (KNN), Random Forest y Regresión Logística
