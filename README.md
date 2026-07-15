@@ -34,17 +34,18 @@ El presente software constituye una herramienta de apoyo para el análisis de da
 
 ##  Ejecución
 
-### ** 1. Descargar el archivo .ZIP **
+### **1. Descargar el archivo .ZIP**
 <p align="center">
   <img src="assetsgenerales/zip.png" width="200" height="200">
 </p>
 
-### ** 2. Descomprimir el zip y abrir en VS Code **
+### **2. Descomprimir el zip y abrir en VS Code**
 
 
-### ** 3. Ejecutar los siguientes 3 archivos en orden **
+### **3. Ejecutar los siguientes 3 archivos en orden**
 <p align="center">
   <img src="assetsgenerales/archivos.png" width="500" height="200">
+  <br>
   Nota: Asegurese de tener los archivos .xpt en el mismo lugar de los ejecutables
 </p>
 
@@ -53,16 +54,16 @@ El presente software constituye una herramienta de apoyo para el análisis de da
   <img src="assetsgenerales/datos.png" width="500" height="200">
 </p>
 
-### ** 4. Otención de archivos .csv **
+### **4. Otención de archivos .csv**
 <p align="center">
   <img src="assetsgenerales/csv.png" width="500" height="200">
 </p>
 
 **Nota:** Cualquier dato o explicación mas al fondo se encuentra dentro del manual de usuario ubicado dentro de cada carpeta correspondiente al idioma
 
-##  Contact
+##  Contacto
 
-For questions or collaborations, contact:  
+<p>Para preguntas o colaboraciones, contacte a:</p>
 
 **ra421571@uaeh.edu.mx**
 
