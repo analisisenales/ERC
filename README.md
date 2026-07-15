@@ -1,4 +1,4 @@
-#Discovery of Alternative Biomarkers for Chronic Kidney Disease Using Zero-Leakage Machine Learning Models
+# Discovery of Alternative Biomarkers for Chronic Kidney Disease Using Zero-Leakage Machine Learning Models
 **Authores:** Victor Efrain Ramos Rivero, Mauro Emilio Avendaño González, Ing. Jocsan Uziel Martínez López
 **Version:** 1.0
 
@@ -13,7 +13,7 @@ El presente software constituye una herramienta de apoyo para el análisis de da
 ### Logotipo
 
 <p align="center">
-  <img src="assets/logoingles.png" width="700">
+  <img src="assets/logoingles.png" width="500" height="200">
 </p>
 
 
