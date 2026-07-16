@@ -1,5 +1,5 @@
 # Discovery of Alternative Biomarkers for Chronic Kidney Disease Using Zero-Leakage Machine Learning Models
-**Autores:** Victor Efrain Ramos Rivero, Mauro Emilio Avendaño González, ME. Avendaño-Gonzalez, VE. Ramos-Rivero,D. Noguez-Ruiz, L. Nava-Velazquez, M. Tetlalmatzi-Montiel, D. Estrada-Luna, EE. Rodriguez-Torres, Ing. Jocsan Uziel Martínez López
+**Autores:** Víctor Efraín Ramos Rivero, Mauro Emilio Avendaño González, ME. Avendaño-González, VE. Ramos-Rivero,D. Noguez-Ruiz, L. Nava-Velázquez, M. Tetlalmatzi-Montiel, D. Estrada-Luna, EE. Rodriguez-Torres, Ing. Jocsan Uziel Martínez López
 <br>
 **Version:** 1.0
 
@@ -31,7 +31,7 @@ El presente software constituye una herramienta de apoyo para el análisis de da
       - P_DEMO_nombres_claros.csv
       - Unificacion_tablas.csv
 -Leé estos archivos en los software de **KNN**, **LR**, **RF**
--Genera graficos que nos indican los datos daño renal
+-Genera gráficos que nos indican los datos daño renal
 
 ##  Ejecución
 
@@ -47,7 +47,7 @@ El presente software constituye una herramienta de apoyo para el análisis de da
 <p align="center">
   <img src="assetsgenerales/archivos.png" width="500" height="200">
   <br>
-  Nota: Asegurese de tener los archivos .xpt en el mismo lugar de los ejecutables
+  Nota: Asegúrese de tener los archivos .xpt en el mismo lugar de los ejecutables
 </p>
 
 
@@ -55,12 +55,12 @@ El presente software constituye una herramienta de apoyo para el análisis de da
   <img src="assetsgenerales/datos.png" width="500" height="200">
 </p>
 
-### **4. Otención de archivos .csv**
+### **4. Obtención de archivos .csv**
 <p align="center">
   <img src="assetsgenerales/csv.png" width="500" height="200">
 </p>
 
-**Nota:** Cualquier dato o explicación mas al fondo se encuentra dentro del manual de usuario ubicado dentro de cada carpeta correspondiente al idioma, creado por el Ing. Jocsan Uziel Martínez López
+**Nota:** Cualquier dato o explicación más a fondo se encuentra en el manual de usuario ubicado en cada carpeta correspondiente al idioma, creado por el Ing. Jocsan Uziel Martínez López
 
 ##  Contacto
 
