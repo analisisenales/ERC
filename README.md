@@ -1,5 +1,5 @@
 # Discovery of Alternative Biomarkers for Chronic Kidney Disease Using Zero-Leakage Machine Learning Models
-**Autores:** Víctor Efraín Ramos Rivero, Mauro Emilio Avendaño González, ME. Avendaño-González, VE. Ramos-Rivero,D. Noguez-Ruiz, L. Nava-Velázquez, M. Tetlalmatzi-Montiel, D. Estrada-Luna, EE. Rodriguez-Torres, Ing. Jocsan Uziel Martínez López
+**Autores:** Mauro Emilio Avendaño González, Víctor Efraín Ramos Rivero, ME. Avendaño-González, VE. Ramos-Rivero,D. Noguez-Ruiz, L. Nava-Velázquez, M. Tetlalmatzi-Montiel, D. Estrada-Luna, EE. Rodriguez-Torres, Ing. Jocsan Uziel Martínez López
 <br>
 **Version:** 1.0
 
