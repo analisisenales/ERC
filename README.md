@@ -41,7 +41,7 @@ El presente software constituye una herramienta de apoyo para el análisis de da
 </p>
 
 ### **2. Descomprimir el zip y abrir en VS Code**
-<h3>Para ejecutar los softwares se requiere ejecutar el comando siguiente</h3>
+<h3>Para ejecutar los archivos se requiere ejecutar el comando siguiente</h3>
 
 ```bash
 pip install -r requirements.txt
