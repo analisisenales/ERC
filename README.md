@@ -66,6 +66,7 @@ pip install -r requirements.txt
 
 **Nota:** Cualquier dato o explicación más a fondo se encuentra en el manual de usuario ubicado en cada carpeta correspondiente al idioma, creado por el Ing. Jocsan Uziel Martínez López
 
+
 ##  Contacto
 
 <p></p>
@@ -79,3 +80,15 @@ pip install -r requirements.txt
 **av353745@uaeh.edu.mx**
 
 **uzlopjocmar@gmail.com**
+
+---
+
+## Agradecimientos
+
+Esta herramienta se desarrolló como parte del proyecto de investigación:
+
+**“Discovery of Alternative Biomarkers for Chronic Kidney Disease Using Zero-Leakage Machine Learning Models”**
+
+Por favor, citar tanto el artículo correspondiente (cuando sea publicado) como al repositorio propiamente al utilizar los archivos en trabajos académicos.
+
+--
