@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Random Forest with complete biomarkers
-Approach: Classification by tree assemblies using the complete record.
+Random Forest with complete biomarkers.
+Focus: Classification via tree ensembles using the complete medical record.
 """
 
 import pandas as pd
@@ -13,70 +13,70 @@ from sklearn.impute import SimpleImputer
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# Step 1: Loading patient data from the source file.
+# Step 1: Load patient data from the source file.
 print("Loading the complete database...")
-directorio_actual = os.path.dirname(os.path.abspath(__file__))
-archivo_limpio = os.path.join(directorio_actual, 'Unificacion_tablas.csv')
+current_directory = os.path.dirname(os.path.abspath(__file__))
+clean_file = os.path.join(current_directory, 'merged_tables.csv')
 
 try:
-    # The initial data load is performed without applying global deletions of missing values.
-    df = pd.read_csv(archivo_limpio)
-    pacientes_iniciales = len(df)
-    print(f"📄 Initial patients in the file: {pacientes_iniciales}")
+    # Initial data loading is performed without applying global missing value deletions.
+    df = pd.read_csv(clean_file)
+    initial_patients = len(df)
+    print(f"📄 Initial patients in the file: {initial_patients}")
 except Exception as e:
     print(f"❌ Error loading CSV: {e}")
     raise
 
-# Step 2: Generating the "Ground Truth" or target variable by calculating eGFR.
-# Records with key data are retained only to generate the correct rating.
-df.dropna(subset=['Creatinina_umol_L', 'Edad', 'Genero'], inplace=True)
+# Step 2: Generate the "Ground Truth" or target variable through eGFR calculation.
+# Only records lacking the mandatory variables for the equation are excluded.
+df.dropna(subset=['Creatinine, refrigerated serum (umol/L)', 'Age', 'Gender'], inplace=True)
 print(f"✅ Patients retained after validating ground truth requirements: {len(df)}")
 
-df['Creatinina_mg_dL'] = df['Creatinina_umol_L'] / 88.4
+df['Creatinine_mg_dL'] = df['Creatinine, refrigerated serum (umol/L)'] / 88.4
 
-def calcular_egfr(row):
-    scr = row['Creatinina_mg_dL']
-    edad = row['Edad']
-    sexo = row['Genero']
+def calculate_egfr(row):
+    scr = row['Creatinine_mg_dL']
+    age = row['Age']
+    sex = row['Gender']
     
-    kappa = 0.7 if sexo == 2 else 0.9
-    alpha = -0.241 if sexo == 2 else -0.302
-    mult_sexo = 1.012 if sexo == 2 else 1.0
+    kappa = 0.7 if sex == 2 else 0.9
+    alpha = -0.241 if sex == 2 else -0.302
+    sex_multiplier = 1.012 if sex == 2 else 1.0
     
-    return 142 * min(scr/kappa, 1)**alpha * max(scr/kappa, 1)**-1.200 * 0.9938**edad * mult_sexo
+    return 142 * min(scr/kappa, 1)**alpha * max(scr/kappa, 1)**-1.200 * 0.9938**age * sex_multiplier
 
-df['eGFR_Real'] = df.apply(calcular_egfr, axis=1)
+df['eGFR_Real'] = df.apply(calculate_egfr, axis=1)
 
-def clasificar_estadio(egfr):
+def classify_stage(egfr):
     if egfr >= 60: return "G1-G2 (Healthy/Mild)"
     elif egfr >= 30: return "G3 (Moderate)"
     else: return "G4-G5 (Severe)"
 
-df['Target_Estadio'] = df['eGFR_Real'].apply(clasificar_estadio)
+df['Target_Stage'] = df['eGFR_Real'].apply(classify_stage)
 
-# Step 3: Preparing data for Machine Learning.
-columnas_excluir = ['ID_Participante', 'Target_Estadio', 'eGFR_Real']
-X = df.drop(columns=columnas_excluir)
-y = df['Target_Estadio']
+# Step 3: Data preparation for Machine Learning.
+columns_to_exclude = ['Participant_ID', 'Target_Stage', 'eGFR_Real']
+X = df.drop(columns=columns_to_exclude)
+y = df['Target_Stage']
 
-# Data division: 75% for training, 25% for testing.
+# Data splitting: 75% for training, 25% for testing.
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42, stratify=y)
 
-# Step 4: Building the Preprocessing Pipeline using Statistical Imputation.
+# Step 4: Preprocessing Pipeline through Statistical Imputation.
 print("\n🛠️ Applying Statistical Imputation (Median) to incomplete records...")
-# The median is used for its robustness against atypical or extreme clinical values.
-imputador = SimpleImputer(strategy='median')
+# Median is used due to its robustness against atypical or extreme clinical values.
+imputer = SimpleImputer(strategy='median')
 
-# The fit is performed exclusively on the training set to prevent data leakage.
-X_train_imputed = pd.DataFrame(imputador.fit_transform(X_train), columns=X_train.columns)
-X_test_imputed = pd.DataFrame(imputador.transform(X_test), columns=X_test.columns)
+# The fit is exclusively performed on the training set to prevent data leakage.
+X_train_imputed = pd.DataFrame(imputer.fit_transform(X_train), columns=X_train.columns)
+X_test_imputed = pd.DataFrame(imputer.transform(X_test), columns=X_test.columns)
 
-# Step 5: Initializing and training the Random Forest classifier.
+# Step 5: Initialization and training of the Random Forest classifier model.
 print("🧠 Training Random Forest with recovered data...")
 rf_model = RandomForestClassifier(n_estimators=100, random_state=42, class_weight='balanced')
 rf_model.fit(X_train_imputed, y_train)
 
-# Step 6: Model evaluation, calculation of performance metrics, and visualization of results.
+# Step 6: Model evaluation, performance metrics calculation, and visualization.
 y_pred = rf_model.predict(X_test_imputed)
 
 print("\n" + "="*50)
@@ -87,13 +87,13 @@ print("\n📋 Detailed Report:")
 print(classification_report(y_test, y_pred))
 
 # Step 7: Extraction and visualization of feature importance.
-importancias = rf_model.feature_importances_
-df_importancia = pd.DataFrame({'Biomarcador': X.columns, 'Importancia': importancias})
-df_importancia = df_importancia.sort_values(by='Importancia', ascending=False)
+importances = rf_model.feature_importances_
+df_importance = pd.DataFrame({'Biomarker': X.columns, 'Importance': importances})
+df_importance = df_importance.sort_values(by='Importance', ascending=False)
 
 plt.figure(figsize=(10, 8))
-sns.barplot(x='Importancia', y='Biomarcador', data=df_importancia, palette='mako')
-plt.title('Biomarker Importance in CKD Diagnosis\n(Random Forest with Imputed Data)', fontsize=14)
+sns.barplot(x='Importance', y='Biomarker', data=df_importance, palette='mako')
+plt.title('Biomarker Importance in CKD Diagnosis\n(Random Forest with complete biomarkers)', fontsize=14)
 plt.xlabel('Importance Level (Fraction of 100%)', fontsize=12)
 plt.ylabel('Clinical Study / Biomarker', fontsize=12)
 plt.tight_layout()
